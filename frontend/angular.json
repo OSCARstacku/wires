@@ -38,7 +38,9 @@
                 "node_modules/materialize-css"
               ]
             },
-            "scripts": [],
+            "scripts": [
+              "node_modules/materialize-css/dist/js/materialize.min.js"
+            ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },
@@ -110,7 +112,9 @@
             "styles": [
               "src/scss/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/materialize-css/dist/js/materialize.min.js"
+            ]
           }
         }
       }

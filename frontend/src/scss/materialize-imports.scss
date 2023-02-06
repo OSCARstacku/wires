@@ -1,0 +1,4 @@
+@import '../../node_modules/materialize-css/sass/components/color-variables'; //importamos las variables actuales de materialize
+@import './colors.scss'; //aqui sobrescribimos las variables con nuestro tema
+@import '../../node_modules/materialize-css/sass/materialize.scss'; //importamos todos los estilos y componentes de materialize
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap');
