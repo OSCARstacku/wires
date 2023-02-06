@@ -6,11 +6,17 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignComponent } from './components/sign/sign.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { BodyComponent } from './components/body/body.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignComponent
+    SignComponent,
+    MessagesComponent,
+    BodyComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
