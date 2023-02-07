@@ -33,10 +33,10 @@
         <div class="row">
             <h5 class="center" *ngIf="messageArray.length <= 0">No tiene mensajes</h5>
             <div *ngIf="messageArray.length > 0">
-                <div class="col s12 m6" *ngFor="let msn of messageArray">
+                <div class="col s12 m6" *ngFor="let msn of messageArray | keyvalue">
                     <div class="card white">
                         <div class="card-content black-text">
-                            <span class="card-title"><b>Card Title</b></span>
+                            <span class="card-title"><b>{{ msn.key }}</b></span>
                             <p>I am a very simple card. I am good at containing small bits of information.
                             I am convenient because I require little markup to use effectively.</p>
                         </div>

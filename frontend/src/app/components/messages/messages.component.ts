@@ -97,8 +97,9 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
   loadMessages(){
     this.setPreloaderOn();
     this.loadMessagesComponent$ = this._messageService.list_messages_users(this.tokenUser).subscribe(res=>{
-      this.messageArray = res.data;
+      // this.messageArray = res.data;
       for(const Msn of res.data){
+        this.messageArray = res.data;
         try {
           this._globalService.messageObservableData = {
             messagesOfInterface : Msn,
