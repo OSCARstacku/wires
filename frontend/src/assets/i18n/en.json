@@ -1,7 +1,9 @@
 {
+    "Create": "Create",
     "Email": "Email",
     "English": "English",
-    "Names and Surnames": "Names and surnames",
+    "Names and Surnames": "Names and Surnames",
+    "Nickname": "Nickname",
     "Password": "Password",
     "Required field": "Required field",
     "See the password": "See the password",
