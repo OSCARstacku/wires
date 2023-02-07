@@ -1,1 +1,42 @@
-/*# sourceMappingURL=sign.component.css.map */
+.head-menu-item-btn {
+  border: none;
+  background-color: transparent;
+  margin: 1rem 0.5rem;
+  padding: 0px;
+  cursor: pointer;
+}
+.head-menu-item-btn img {
+  border-radius: 45%;
+  width: 35px;
+  height: 30px;
+}
+
+.overlay-language {
+  padding: 0.5rem 0;
+}
+.overlay-language ul {
+  list-style: none;
+  width: 10rem;
+}
+.overlay-language ul li {
+  background: whitesmoke;
+  padding: 0.35rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgb(88, 88, 88);
+  cursor: pointer;
+}
+.overlay-language ul li img {
+  margin-right: 0.6rem;
+  height: 12px;
+}
+.overlay-language ul li:hover {
+  background: rgb(199, 199, 199);
+  color: whitesmoke;
+}
+
+.overlay-fall {
+  -webkit-animation: fall 300ms ease-in-out forwards;
+          animation: fall 300ms ease-in-out forwards;
+  transform-origin: top center;
+}/*# sourceMappingURL=sign.component.css.map */
