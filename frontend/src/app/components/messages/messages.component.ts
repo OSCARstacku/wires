@@ -81,23 +81,23 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getObservableMessage(){
-    this._globalService.messageObservable.subscribe(res=>{
-      try {
-        if(res.messagesOfInterface.length <= 0){
-          this.messageArray.length = 0;
-        }else{
-          this.messageArray = res.messagesOfInterface;
-        }
-      } catch (error) {
-        // console.log(error)
-      }
-    })
+    // this._globalService.messageObservable.subscribe(res=>{
+    //   try {
+    //     if(res.messagesOfInterface.length <= 0){
+    //       this.messageArray.length = 0;
+    //     }else{
+    //       this.messageArray = res.messagesOfInterface.data;
+    //     }
+    //   } catch (error) {
+    //     // console.log(error)
+    //   }
+    // })
   }
 
   loadMessages(){
     this.setPreloaderOn();
     this.loadMessagesComponent$ = this._messageService.list_messages_users(this.tokenUser).subscribe(res=>{
-      console.log(res.data)
+      this.messageArray = res.data;
       for(const Msn of res.data){
         try {
           this._globalService.messageObservableData = {
