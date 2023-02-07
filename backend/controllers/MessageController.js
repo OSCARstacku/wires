@@ -3,7 +3,14 @@
 const Message=require('../models/message');
 const User=require('../models/user');
 
-
+async function list_messages_users(req, res){
+    try {
+        const reg = await Message.find();
+        res.status(200).send({ data: reg });
+    } catch (error) {
+        // console.error(`Error de servidor: ${error}`);
+    }
+}
 
 async function create_message_user(req, res){
     try {
@@ -36,5 +43,6 @@ async function create_message_user(req, res){
 }
 
 module.exports={
+    list_messages_users,
     create_message_user,
 }

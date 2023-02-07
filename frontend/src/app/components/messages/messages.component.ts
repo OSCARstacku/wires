@@ -49,13 +49,14 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.socket.on('new-messages', () =>{
       this.getUserAndData();
-      // this.loadCustomers();
+      this.loadMessages();
     });
     this.listObserversMessagesComponent=[this.loadMessagesComponent$];
   }
 
   ngAfterViewInit(): void {
     this.getUserAndData();
+    this.loadMessages();
     this.cdr.detectChanges();
   }
 
@@ -74,15 +75,20 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
   getUserAndData(){
     this.idUser = localStorage.getItem('_id,');
     this.tokenUser = localStorage.getItem('token');
-    // console.log(this.idUser,this.tokenUser,this.roleOfUser)
+  }
+
+  loadMessages(){
+    this.setPreloaderOn();
+    this.loadMessagesComponent$ = this._messageService.list_messages_users(this.tokenUser).subscribe(res=>{
+      console.log(res.data)
+    })
+    this.setPreloaderOff();
   }
 
   createMessageUser(dataForm:any){
     this.setPreloaderOn();
     const dataMessageUserCreated = dataForm;
     dataMessageUserCreated.idUser = this.idUser;
-
-    console.log(dataMessageUserCreated)
 
     this.loadMessagesComponent$ = this._messageService.create_message_user(dataMessageUserCreated,this.token).subscribe(res=>{
       this.socket.emit('socket-messages', {data:true});
