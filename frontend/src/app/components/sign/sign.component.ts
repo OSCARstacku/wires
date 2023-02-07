@@ -5,8 +5,7 @@ import { Router } from '@angular/router'
 @Component({
   selector: 'app-sign',
   templateUrl: './sign.component.html',
-  styleUrls: ['./sign.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./sign.component.scss']
 })
 export class SignComponent  {
 

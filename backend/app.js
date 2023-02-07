@@ -12,6 +12,11 @@ const server=require('http').createServer(app);
 const io=require('socket.io')(server,{
     cors: {origin: '*'}
 });
+io.on('connection', function(socket){
+    socket.on('socket-messages', function(data){
+        io.emit('new-messages');
+    });
+})
 
 // Verificación conexión a DB
 mongoose.connect('mongodb://localhost:27017/test',(err,res)=>{
