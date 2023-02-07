@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from "@ngx-translate/core";
-// import { AdminService } from 'src/app/services/admin.service';
+import { UserService } from 'src/app/services/user.service';
 import { GlobalService } from '../../common/services/global.service';
 import { Idioms } from '../nav-bar/nav-bar.model';
 import { SignValidator } from './sign-validators'
@@ -29,6 +29,12 @@ export class SignComponent implements OnInit, AfterViewInit  {
   idioms : any = [] = Idioms;
   selectedLanguage : any = [];
 
+  signInForm = this.fb.group({
+    email_login: ['',Validators.required],
+    password_login: ['',Validators.required],
+  })
+
+
   signUpForm = this.fb.group({
     nickname_signup: ['', [Validators.required, SignValidator.cannotContainSpace]],
     fullname_signup: ['', [Validators.required, SignValidator.cannotContainSpace]],
@@ -41,6 +47,7 @@ export class SignComponent implements OnInit, AfterViewInit  {
     private fb: FormBuilder,
     private translate: TranslateService,
     private _globalService: GlobalService,
+    private _userService: UserService
     // private _adminService: AdminService,
   ){
     _globalService.globalObservableData = { hidden:true };
@@ -50,11 +57,6 @@ export class SignComponent implements OnInit, AfterViewInit  {
     translate.setDefaultLang('es');
     translate.use(this.selectedLanguage.prefix);
   }
-
-  signInForm = this.fb.group({
-    email_login: ['',Validators.required],
-    password_login: ['',Validators.required],
-  })
 
   
 
@@ -105,7 +107,6 @@ export class SignComponent implements OnInit, AfterViewInit  {
     }
   }
 
-  
   getObservableLanguage () {
     this._globalService.languageObservable.subscribe(res=>{
       try {
@@ -218,11 +219,27 @@ export class SignComponent implements OnInit, AfterViewInit  {
     this.setPreloaderOff();
   }
 
-  createUser(dataForm:any){
-    // this.setPreloaderOn();
-    const dataUserCreate = dataForm;
+  createUser(){
+    this.setPreloaderOn();
+    const dataUserCreate = this.signUpForm.value;
+
     console.log(dataUserCreate)
+
+    this._userService.create_user(dataUserCreate).subscribe(res=>{
+      try {
+        M.toast({ html: res.message });
+      } catch (error) {
+        // console.log(error)
+      }
+      this.cdr.markForCheck();
+    })
+    // this.resetForm();
+    this.setPreloaderOff();
   }
+
+  // resetForm(){
+
+  // }
 
 }
 

@@ -15,49 +15,7 @@
                     </ul>
                 </div>
                 <div id="signinInterface" class="col s12">
-                    <div class="section container">
-                        <h5>{{ 'Sign in' | translate }}</h5>
-                        <div class="row">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="section">
-                                        <div class="center-align">
-                                            <input id="email_signin" type="email" formControlName="email_signin" placeholder="{{ 'Email' | translate }}" maxlength="150">
-                                            <label for="email_signin">{{ "Email" | translate }} *</label>
-                                        </div>
-                                    </div>
-                                    <div class="section">
-                                        <div class="center-align" (keyup)="0">
-                                            <input id="password_signin" type="password" formControlName="password_signin" placeholder="{{ 'Password' | translate }}" minlength="8" maxlength="256" #passValue>
-                                            <label for="password_signin">{{ "Password" | translate }} *</label>
-
-                                            <div class="section">
-                                                <label>
-                                                    <input type="checkbox" [checked]="showPassValue" (click)="showPasswordLogin($event)">
-                                                    <span>{{ "See the password" | translate }}</span>
-                                                    <p *ngIf="showPassword">{{ passValue.value }}</p>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- <div class="section">
-                                    <div class="center-align">
-                                        <button class="btn waves-effect waves-light black-text">{{ "Start" | translate }}</button>
-                                    </div>
-                                </div> -->
-
-                                <label>*&nbsp;{{ 'Required field' | translate }}</label>
-
-                                <div class="section">
-                                    <div class="center-align">
-                                        <button class="btn waves-effect waves-light black-text" (click)="startUserSession()" [disabled]="!signInForm.valid">{{ "Start" | translate }}</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div id="signupInterface" class="col s12">
                     <div class="section container">
@@ -70,41 +28,38 @@
                                         <div class="center-align">
                                             <input id="nickname_signup" type="text" formControlName="nickname_signup" placeholder="{{ 'Nickname' | translate }}" minlength="1" maxlength="50">
                                             <label for="nickname_signup">{{ "Nickname" | translate }} *</label>
-                                            <div *ngIf="f.nickname_signup.touched && f.nickname_signup.invalid" class="red-text">
+                                            <!-- <div *ngIf="f.nickname_signup.touched && f.nickname_signup.invalid" class="red-text">
                                                 <div *ngIf="f.nickname_signup.errors?.required">*&nbsp;{{ 'Required field' | translate }}</div>
                                                 <div *ngIf="f.nickname_signup.errors?.cannotContainSpace">{{ 'Blank spaces are not allowed' | translate }}</div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="section">
                                         <div class="center-align">
                                             <input id="fullname_signup" type="text" formControlName="fullname_signup" placeholder="{{ 'Names and Surnames' | translate }}" minlength="2" maxlength="150">
                                             <label for="fullname_signup">{{ "Names and Surnames" | translate }} *</label>
-                                            <div *ngIf="f.fullname_signup.touched && f.fullname_signup.invalid" class="red-text">
+                                            <!-- <div *ngIf="f.fullname_signup.touched && f.fullname_signup.invalid" class="red-text">
                                                 <div *ngIf="f.fullname_signup.errors?.required">*&nbsp;{{ 'Required field' | translate }}</div>
-                                                <div *ngIf="f.fullname_signup.errors?.cannotContainSpace">{{ 'Blank spaces are not allowed' | translate }}</div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="section">
                                         <div class="center-align">
                                             <input id="email_signup" type="email" formControlName="email_signup" placeholder="{{ 'Email' | translate }}" minlength="5" maxlength="150">
                                             <label for="email_signup">{{ "Email" | translate }} *</label>
-                                            <div *ngIf="f.email_signup.touched && f.email_signup.invalid" class="red-text">
+                                            <!-- <div *ngIf="f.email_signup.touched && f.email_signup.invalid" class="red-text">
                                                 <div *ngIf="f.email_signup.errors?.required">*&nbsp;{{ 'Required field' | translate }}</div>
-                                                <div *ngIf="f.email_signup.errors?.cannotContainSpace">{{ 'Blank spaces are not allowed' | translate }}</div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="section">
                                         <div class="center-align" (keyup)="0">
                                             <input id="password_signup" type="password" formControlName="password_signup" placeholder="{{ 'Password' | translate }}" minlength="8" maxlength="256" #passSignUpValue>
                                             <label for="password_signup">{{ "Password" | translate }} *</label>
-                                            <div *ngIf="f.password_signup.touched && f.password_signup.invalid" class="red-text">
+                                            <!-- <div *ngIf="f.password_signup.touched && f.password_signup.invalid" class="red-text">
                                                 <div *ngIf="f.password_signup.errors?.required">*&nbsp;{{ 'Required field' | translate }}</div>
                                                 <div *ngIf="f.password_signup.errors?.minlength">{{ 'Must be at least 8 characters' | translate }}</div>
-                                                <div *ngIf="f.password_signup.errors?.cannotContainSpace">{{ 'Blank spaces are not allowed' | translate }}</div>
-                                            </div>
+                                            </div> -->
 
                                             <div class="section">
                                                 <label>
@@ -119,7 +74,7 @@
 
                                 <div class="section">
                                     <div class="center-align">
-                                        <button class="btn waves-effect waves-light black-text" (click)="createUser(signUpForm.value)" [disabled]="!signUpForm.valid">{{ "Create" | translate }}</button>
+                                        <button class="btn waves-effect waves-light black-text" (click)="createUser()" [disabled]="!signUpForm.valid">{{ "Create" | translate }}</button>
                                     </div>
                                 </div>
                             </form>
