@@ -16,11 +16,16 @@ export class UserService {
     this.url=GLOBAL.url;
   }
 
-  
   //GET
   get_user(id:any,token:any):Observable<any>{
     let headers=new HttpHeaders({'Content-Type':'application/json','Authorization':token});
     return this._http.get(this.url+'get_admin/'+id,{headers:headers});
+  }
+
+  //POST
+  create_user(data:any):Observable<any>{
+    let headers=new HttpHeaders({'Content-Type':'application/json'});
+    return this._http.post(this.url+'create_user',data,{headers:headers})
   }
 
   //POST

@@ -1,6 +1,9 @@
-{   "Create": "Crear",
+{   
+    "Blank spaces are not allowed": "No se permiten espacios en blanco",
+    "Create": "Crear",
     "Email": "Correo electrónico",
     "English": "Inglés",
+    "Must be at least 8 characters": "Debe tener al menos 8 caracteres",
     "Names and Surnames": "Nombres y Apellidos",
     "Nickname": "Apodo",
     "Password": "Contraseña",

@@ -1,10 +1,11 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from "@ngx-translate/core";
 // import { AdminService } from 'src/app/services/admin.service';
 import { GlobalService } from '../../common/services/global.service';
 import { Idioms } from '../nav-bar/nav-bar.model';
+import { SignValidator } from './sign-validators'
 
 
 
@@ -28,9 +29,11 @@ export class SignComponent implements OnInit, AfterViewInit  {
   idioms : any = [] = Idioms;
   selectedLanguage : any = [];
 
-  signInForm = this.fb.group({
-    email_login: ['',Validators.required],
-    password_login: ['',Validators.required],
+  signUpForm = this.fb.group({
+    nickname_signup: ['', [Validators.required, SignValidator.cannotContainSpace]],
+    fullname_signup: ['', [Validators.required, SignValidator.cannotContainSpace]],
+    email_signup: ['', [Validators.required, SignValidator.cannotContainSpace]],
+    password_signup: ['', [Validators.required, Validators.minLength(8), SignValidator.cannotContainSpace]],
   })
 
   constructor(
@@ -48,6 +51,17 @@ export class SignComponent implements OnInit, AfterViewInit  {
     translate.use(this.selectedLanguage.prefix);
   }
 
+  signInForm = this.fb.group({
+    email_login: ['',Validators.required],
+    password_login: ['',Validators.required],
+  })
+
+  
+
+  get f(){
+    return this.signUpForm.controls;
+  }
+
   ngOnInit(): void {
     this.idioms;
     this.getObservableLanguage();
@@ -60,6 +74,7 @@ export class SignComponent implements OnInit, AfterViewInit  {
     this.signIn();
     this.cdr.detectChanges();
   }
+
 
   setPreloaderOn () {
     this._globalService.preloaderObservableData = {
@@ -203,6 +218,11 @@ export class SignComponent implements OnInit, AfterViewInit  {
     this.setPreloaderOff();
   }
 
+  createUser(dataForm:any){
+    // this.setPreloaderOn();
+    const dataUserCreate = dataForm;
+    console.log(dataUserCreate)
+  }
 
 }
 

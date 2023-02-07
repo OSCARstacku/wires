@@ -1,7 +1,9 @@
 {
+    "Blank spaces are not allowed": "Blank spaces are not allowed",
     "Create": "Create",
     "Email": "Email",
     "English": "English",
+    "Must be at least 8 characters": "Must be at least 8 characters",
     "Names and Surnames": "Names and Surnames",
     "Nickname": "Nickname",
     "Password": "Password",
