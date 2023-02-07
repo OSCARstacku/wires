@@ -1,2 +1,36 @@
 <app-nav-bar></app-nav-bar>
-<p>messages works!</p>
+<div class="container">
+    <div class="section">
+        <h5>Create message</h5>
+    </div>
+    <div class="section center">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="section">
+                        <div class="center-align">
+                            <input id="email_signin" type="text" formControlName="email_signin" placeholder="{{ 'Talk about me' | translate }}" minlength="5" maxlength="150">
+                            <label for="email_signin">{{ 'Title messages' | translate }}</label>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="center-align" (keyup)="0">
+                            <textarea id="textarea1" class="materialize-textarea" placeholder="{{ 'Create message for share with friends. Max 700 chars' | translate }}" maxlength="700"></textarea>
+                            <label for="textarea1">{{ 'Messages' | translate }}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="center-align">
+                        <!-- <button class="btn waves-effect waves-light black-text" (click)="startUserSession()" [disabled]="!signInForm.valid">{{ "Start" | translate }}</button> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="section center">
+        <h5>Section 2</h5>
+        <p>Stuff</p>
+    </div>
+</div>

@@ -1,23 +1,19 @@
 <ng-container>
     <nav>
         <div class="nav-wrapper container">
-            <a href="#!" class="brand-logo">Logo</a>
+            <a href="#!" class="brand-logo">Wires</a>
             <div class="right">
                 <div class="head-menu-item">
                     <!-- <button class="head-menu-item-btn" [cdkMenuTriggerFor]="languageOverlay">
                         <img [src]="'assets/img/flag-' + selectedLanguage.flag + '.png'" class="flag" alt="{{ selectedLanguage.Idiom | translate }}">
                     </button> -->
-                    <button class="head-menu-item-btn" [cdkMenuTriggerFor]="ProfileOverlay">
-                        <i class="material-icons white-text">menu</i>
+                    <button class="head-menu-item-btn" style="padding-right: 1rem;" [cdkMenuTriggerFor]="ProfileOverlay">
+                        <i class="bi bi-chat-square-dots white-text"></i>
                     </button>
-                    <div class="head-user-avatar-container">
-                        <div class="head-user-avatar" [cdkMenuTriggerFor]="ProfileOverlay">
-                            <img [src]="'assets/img/users/profile.jpg'" alt="" class="user-avatar">
-                            <div class="circle-indicator pulse"></div>
-                        </div>
-                    </div>
+                    <button class="head-menu-item-btn" [cdkMenuTriggerFor]="ProfileOverlay">
+                        <i class="bi bi-list white-text"></i>
+                    </button>
                 </div>
-                <li><a href="sass.html">Sass</a></li>
             </div>
         </div>
     </nav>
