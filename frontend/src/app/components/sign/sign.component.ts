@@ -223,8 +223,6 @@ export class SignComponent implements OnInit, AfterViewInit  {
     this.setPreloaderOn();
     const dataUserCreate = this.signUpForm.value;
 
-    console.log(dataUserCreate)
-
     this._userService.create_user(dataUserCreate).subscribe(res=>{
       try {
         M.toast({ html: res.message });
