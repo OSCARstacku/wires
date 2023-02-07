@@ -1,0 +1,47 @@
+.head-menu-item-btn{
+    border: none;
+    background-color: transparent;
+    // margin: 1rem 0.5rem;
+    padding: 0px;
+    cursor: pointer;
+
+    i {
+        border-radius: 45%;
+        width: 35px;
+        height: 30px;
+    }
+}
+
+
+.overlay-language {
+    padding: 0.5rem 0;
+
+    ul {
+        list-style: none;
+        width: 230px;
+
+        li {
+            background: whitesmoke;
+            padding: 0.8rem 1.5rem;
+            font-size: 12px;
+            font-weight: 500;
+            color: rgb(88, 88, 88);
+            cursor: pointer;
+
+            img {
+            margin-right: 0.6rem;
+            height: 12px;
+            }
+        }
+
+        li:hover {
+            background: rgb(199, 199, 199);
+            color: whitesmoke;
+        }
+    }
+}
+
+.overlay-fall {
+    animation: fall 300ms ease-in-out forwards;
+    transform-origin: top center;
+}

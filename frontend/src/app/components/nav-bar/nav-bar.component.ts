@@ -6,6 +6,7 @@ import { GlobalService } from 'src/app/common/services/global.service';
 import { Idioms } from './nav-bar.model';
 import { Router } from '@angular/router';
 
+declare let M:any;
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -107,6 +108,19 @@ export class NavBarComponent implements OnInit, AfterViewInit, OnDestroy {
     } catch (error) {
       // console.log(error)
     }
+  }
+
+  logOut(){
+    this.setPreloaderOn();
+    window.location.reload();
+    localStorage.removeItem('token');
+    localStorage.removeItem('_id,');
+    // localStorage.removeItem('identity');
+    // localStorage.removeItem('userOfCompany');
+    // localStorage.removeItem('roleUser');
+    this._router.navigate(['/']);
+    window.location.reload();
+    this.setPreloaderOff();
   }
 
   ngOnDestroy(): void {

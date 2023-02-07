@@ -1,20 +1,57 @@
 <ng-container>
-   <!-- Dropdown Structure -->
-    <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">one</a></li>
-        <li><a href="#!">two</a></li>
-        <li class="divider"></li>
-        <li><a href="#!">three</a></li>
-    </ul>
     <nav>
         <div class="nav-wrapper container">
-        <a href="#!" class="brand-logo"></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <!-- Dropdown Trigger -->
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-        </ul>
+            <a href="#!" class="brand-logo">Logo</a>
+            <div class="right">
+                <div class="head-menu-item">
+                    <!-- <button class="head-menu-item-btn" [cdkMenuTriggerFor]="languageOverlay">
+                        <img [src]="'assets/img/flag-' + selectedLanguage.flag + '.png'" class="flag" alt="{{ selectedLanguage.Idiom | translate }}">
+                    </button> -->
+                    <button class="head-menu-item-btn" [cdkMenuTriggerFor]="ProfileOverlay">
+                        <i class="material-icons white-text">menu</i>
+                    </button>
+                    <div class="head-user-avatar-container">
+                        <div class="head-user-avatar" [cdkMenuTriggerFor]="ProfileOverlay">
+                            <img [src]="'assets/img/users/profile.jpg'" alt="" class="user-avatar">
+                            <div class="circle-indicator pulse"></div>
+                        </div>
+                    </div>
+                </div>
+                <li><a href="sass.html">Sass</a></li>
+            </div>
         </div>
     </nav>
 </ng-container>
+
+<ng-template #ProfileOverlay>
+    <div class="overlay overlay-language overlay-fall" cdkMenu>
+        <ul>
+            <li class="valign-wrapper center-align">
+                <span style="font-size: 16px;"><b>Daniel Amadeus</b></span>
+            </li>
+            <li class="valign-wrapper center-align" (click)="logOut()" cdkMenuItem>
+                <i class="bi bi-pencil-square"></i>&nbsp;&nbsp;<span>{{ "Create Messages" | translate }}</span>
+            </li>
+            <li class="valign-wrapper center-align" (click)="logOut()" cdkMenuItem>
+                <i class="bi bi-send-fill"></i>&nbsp;&nbsp;<span>{{ "My Messages" | translate }}</span>
+            </li>
+            <li class="valign-wrapper center-align" (click)="logOut()" cdkMenuItem>
+                <i class="bi bi-wechat"></i>&nbsp;&nbsp;<span>{{ "See all messages" | translate }}</span>
+            </li>
+            <li class="valign-wrapper center-align" (click)="logOut()" cdkMenuItem>
+                <i class="bi bi-box-arrow-in-right"></i>&nbsp;&nbsp;<span>{{ "Log out" | translate }}</span>
+            </li>
+        </ul>
+    </div>
+</ng-template>
+
+<ng-template #languageOverlay>
+    <div class="overlay overlay-language overlay-fall" cdkMenu>
+        <ul>
+            <li *ngFor="let idiom of idioms" (click)="useLanguage(idiom.prefix)" cdkMenuItem>
+                <img [src]="'assets/img/flag-' +  idiom.flag + '.png'" width="21" height="20" alt="{{ idiom.Idiom | translate }}">
+                <span>{{ idiom.Idiom | translate }}</span>
+            </li>
+        </ul>
+    </div>
+</ng-template>
