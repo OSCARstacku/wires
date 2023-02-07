@@ -7,7 +7,7 @@
                     <!-- <button class="head-menu-item-btn" [cdkMenuTriggerFor]="languageOverlay">
                         <img [src]="'assets/img/flag-' + selectedLanguage.flag + '.png'" class="flag" alt="{{ selectedLanguage.Idiom | translate }}">
                     </button> -->
-                    <button class="head-menu-item-btn" style="padding-right: 1rem;" [cdkMenuTriggerFor]="ProfileOverlay">
+                    <button class="head-menu-item-btn" style="padding-right: 1rem;" [cdkMenuTriggerFor]="MessagesOverlay">
                         <i class="bi bi-chat-square-dots white-text"></i>
                     </button>
                     <button class="head-menu-item-btn" [cdkMenuTriggerFor]="ProfileOverlay">
@@ -18,6 +18,24 @@
         </div>
     </nav>
 </ng-container>
+
+<ng-template #MessagesOverlay>
+    <div class="card" cdkMenu>
+        <div class="white">
+            <div class="card-content black-text">
+                <span class="card-title"><b>Card Title</b></span>
+                <p>this is a card</p>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="white">
+            <div class="card-content black-text">
+                <span class="card-title"><b>Card Title</b></span>
+                <p>this is a card</p>
+            </div>
+        </div>
+    </div>
+</ng-template>
 
 <ng-template #ProfileOverlay>
     <div class="overlay overlay-language overlay-fall" cdkMenu>

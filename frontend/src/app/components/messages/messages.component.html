@@ -33,19 +33,18 @@
         <div class="row">
             <div class="col s12 m6">
                 <h5 class="center" *ngIf="messageArray.length <= 0">No tiene mensajes</h5>
-                <div *ngIf="messageArray.length > 0">
+                <!-- <div *ngIf="messageArray.length > 0">
                     <div class="card white" *ngFor="let msn of messageArray">
                         <div class="card-content black-text">
-                            <span class="card-title"><b>Card Title</b></span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
+                            <span class="card-title"><b>{{msn.title_message_user}}</b></span>
+                            <p>{{msn.body_message_user}}</p>
                         </div>
                         <div class="card-action center" style="display:flex; justify-content: space-between; align-items: center;">
                             <p style="font-size: 12px;">10:25 am 20/11/22</p>
                             <p style="font-size: 16px;"><b>Daniel Amadeus</b></p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
