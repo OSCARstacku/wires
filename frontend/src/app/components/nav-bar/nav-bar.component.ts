@@ -109,25 +109,6 @@ export class NavBarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  getHeadClass(): string {
-    let styleClass = '';
-
-    this._globalService.globalObservable.subscribe(res=>{
-      try {
-        if (res.hidden == false) {
-          this.hidden = true;
-        } else if ( res.hidden == true ) {
-          this.hidden = false;
-        }
-      } catch (error) {
-        //console.log (error)
-      }
-      this.cdr.markForCheck();
-    });
-
-    return styleClass;
-  }
-
   ngOnDestroy(): void {
     this.listObserversHeadComponent.forEach(sub=>sub.unsubscribe());
   }
