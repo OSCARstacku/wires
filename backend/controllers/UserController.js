@@ -25,14 +25,17 @@ async function create_user(req, res){
                         res.status(200).send({ message: 'Error de servidor', data: undefined });
                     }
                 })
-            }
-            else {
+            } else {
                 res.status(200).send({ message: 'No ha ingresado ninguna contraseña', data: undefined });
             }
-        }else {
+        } else {
             res.status(200).send({ message: 'El usuario ya se encuentra registrado', data: undefined });
         }
     } catch (error) {
         // console.error(`Error de servidor: ${error}`);
     }
+}
+
+module.exports={
+    create_user,
 }

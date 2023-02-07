@@ -31,6 +31,7 @@ mongoose.connect('mongodb://localhost:27017/test',(err,res)=>{
 })
 
 // Rutas
+let user_route=require('./routes/user');
 
 
 // Parsear (analizar cuerpos o estructuras), configurar DATA
@@ -47,6 +48,7 @@ app.use((req,res,next) => {
 });
 
 // Definición de APIs(rutas) a usar
+app.use('/api',user_route);
 
 
 module.exports=app;
