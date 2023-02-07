@@ -32,9 +32,9 @@ export interface UserDetailObserv {
     userDetailObserv : any
 }
 
-// Product
-export interface ProductObserv {
-    productsOfInterface: any;
+// Message
+export interface MessageObserv {
+    messagesOfInterface: any;
 };
 
 export interface ProductDetailObserv {

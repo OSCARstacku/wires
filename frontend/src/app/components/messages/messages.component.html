@@ -32,7 +32,10 @@
     <div class="section">
         <div class="row">
             <div class="col s12 m6">
-                <div class="card white">
+                <div class="card white" *ngIf="messageArray.length <= 0">
+                    <h5>No tiene mensajes</h5>
+                </div>
+                <div class="card white" *ngIf="messageArray.length > 0">
                     <div class="card-content black-text">
                         <span class="card-title"><b>Card Title</b></span>
                         <p>I am a very simple card. I am good at containing small bits of information.

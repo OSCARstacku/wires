@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { NavBar, Preloader, CurrentUser, LanguageObserv, UserObserv, UserDetailObserv, ProductObserv, ProductDetailObserv } from '../interfaces';
+import { NavBar, Preloader, CurrentUser, LanguageObserv, UserObserv, UserDetailObserv, MessageObserv, ProductDetailObserv } from '../interfaces';
 
 
 @Injectable()
@@ -84,20 +84,20 @@ export class GlobalService {
 
     // ------------------------------------------------------
 
-    // // Products
-    private productObservablePrivate: BehaviorSubject<ProductObserv> = new BehaviorSubject<ProductObserv>({ productsOfInterface : "" });
+    // Message
+    private messageObservablePrivate: BehaviorSubject<MessageObserv> = new BehaviorSubject<MessageObserv>({ messagesOfInterface : "" });
 
-    get productObservable() {
-        return this.productObservablePrivate.asObservable();
+    get messageObservable() {
+        return this.messageObservablePrivate.asObservable();
     }
 
-    set productObservableData(dataProduct:ProductObserv) {
-        this.productObservablePrivate.next(dataProduct);
+    set messageObservableData(dataMessage:MessageObserv) {
+        this.messageObservablePrivate.next(dataMessage);
     }
 
     // // ------------------------------------------------------
 
-    // // Product Detail
+    // Product Detail
     private productDetailObservablePrivate: BehaviorSubject<ProductDetailObserv> = new BehaviorSubject<ProductDetailObserv>({ productDetailObserv : "" });
 
     get productDetailObservable() {

@@ -19,4 +19,4 @@ export const ForLanguagePaginator = [
 
 export const User = []
 
-export const Product = []
+export const Message = []

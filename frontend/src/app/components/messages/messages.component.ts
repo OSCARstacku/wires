@@ -7,7 +7,7 @@ import { GLOBAL } from '../../services/GLOBAL';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { MessageService } from 'src/app/services/message.service';
-
+import { Message } from '../../common/models';
 
 declare let M:any;
 @Component({
@@ -29,6 +29,7 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
   roleOfUser: any;
 
   token : any;
+  messageArray : typeof Message = [];
 
   createMessageForm = this.fb.group({
     title_message_user: ['', Validators.required],
@@ -44,6 +45,8 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
     private _messageService: MessageService
   ){
     this.token = this._userService.getToken();
+    this.getUserAndData();
+    this.loadMessages();
   }
 
   ngOnInit(): void {
@@ -77,10 +80,35 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.tokenUser = localStorage.getItem('token');
   }
 
+  getObservableMessage(){
+    this._globalService.messageObservable.subscribe(res=>{
+      try {
+        if(res.messagesOfInterface.length <= 0){
+          this.messageArray.length = 0;
+        }else{
+          this.messageArray = res.messagesOfInterface;
+        }
+      } catch (error) {
+        // console.log(error)
+      }
+    })
+  }
+
   loadMessages(){
     this.setPreloaderOn();
     this.loadMessagesComponent$ = this._messageService.list_messages_users(this.tokenUser).subscribe(res=>{
       console.log(res.data)
+      for(const Msn of res.data){
+        try {
+          this._globalService.messageObservableData = {
+            messagesOfInterface : Msn,
+          }
+        } catch (error) {
+          // console.log(error)
+        }
+        this.getObservableMessage();
+        this.cdr.markForCheck();
+      }
     })
     this.setPreloaderOff();
   }
