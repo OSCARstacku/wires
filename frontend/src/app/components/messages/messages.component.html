@@ -31,16 +31,16 @@
     </div>
     <div class="section">
         <div class="row">
-            <h5 class="center" *ngIf="messageArray.length <= 0">No tiene mensajes</h5>
+            <h5 class="center white-text" *ngIf="messageArray.length <= 0">No tiene mensajes</h5>
             <div *ngIf="messageArray.length > 0">
                 <div class="col s12 m6" *ngFor="let msn of messageArray | keyvalue">
-                    <div class="card white">
+                    <div class="card white borderRadiusCard">
                         <div class="card-content black-text">
                             <span class="card-title"><b>{{ msn.key }}</b></span>
                             <p>I am a very simple card. I am good at containing small bits of information.
                             I am convenient because I require little markup to use effectively.</p>
                         </div>
-                        <div class="card-action center" style="display:flex; justify-content: space-between; align-items: center;">
+                        <div class="card-action center cardFooter" style="border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
                             <p style="font-size: 12px;">10:25 am 20/11/22</p>
                             <p style="font-size: 16px;"><b>Daniel Amadeus</b></p>
                         </div>
