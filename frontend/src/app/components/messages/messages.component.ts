@@ -6,6 +6,7 @@ import { GlobalService } from '../../common/services/global.service';
 import { GLOBAL } from '../../services/GLOBAL';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { MessageService } from 'src/app/services/message.service';
 
 
 declare let M:any;
@@ -23,6 +24,10 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   listObserversMessagesComponent:Array<Subscription>=[];
 
+  idUser: any;
+  tokenUser: any;
+  roleOfUser: any;
+
   token : any;
 
   createMessageForm = this.fb.group({
@@ -36,19 +41,21 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
     private _globalService: GlobalService,
     private _router: Router,
     private _userService: UserService,
+    private _messageService: MessageService
   ){
     this.token = this._userService.getToken();
   }
 
   ngOnInit(): void {
     this.socket.on('new-messages', () =>{
-      // this.getUserAndData();
+      this.getUserAndData();
       // this.loadCustomers();
     });
     this.listObserversMessagesComponent=[this.loadMessagesComponent$];
   }
 
   ngAfterViewInit(): void {
+    this.getUserAndData();
     this.cdr.detectChanges();
   }
 
@@ -64,18 +71,34 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  getUserAndData(){
+    this.idUser = localStorage.getItem('_id,');
+    this.tokenUser = localStorage.getItem('token');
+    // console.log(this.idUser,this.tokenUser,this.roleOfUser)
+  }
+
   createMessageUser(dataForm:any){
-    // this.setPreloaderOn();
+    this.setPreloaderOn();
     const dataMessageUserCreated = dataForm;
+    dataMessageUserCreated.idUser = this.idUser;
+
     console.log(dataMessageUserCreated)
 
-    this.loadMessagesComponent$ = this
-
-
+    this.loadMessagesComponent$ = this._messageService.create_message_user(dataMessageUserCreated,this.token).subscribe(res=>{
+      this.socket.emit('socket-messages', {data:true});
+      try {
+        M.toast({ html: res.message });
+      } catch (error) {
+        // console.log(error)
+      }
+      this.cdr.markForCheck();
+    })
+    this.createMessageForm.reset();
+    this.setPreloaderOff();
   }
 
   ngOnDestroy(): void {
-      
+    this. listObserversMessagesComponent.forEach(sub=>sub.unsubscribe());
   }
 
 }
