@@ -1,4 +1,10 @@
-<div>
+<div *ngIf="preloader" class="loader">
+  <img src="../../../assets/img/logo-trans.png" alt="Wires">
+  <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+</div>
+
+<div *ngIf="!preloader">
+  <app-nav-bar *ngIf="hidden"></app-nav-bar>
   <app-body></app-body>
 </div>
 

@@ -1,24 +1,80 @@
-<div class="container">
-    <div class="row center">
-        <h5>Welcome To Wires</h5>
-        <div class="col s12 m12 l6 xl6">
-            <div class="row">
+<ng-container>
+    <div class="container">
+        <div class="row center">
+            <div class="container section">
+                <h5>Welcome To Wires</h5>
+            </div>
+            <div class="row center">
                 <div class="col s12">
-                    <ul class="tabs">
-                        <li class="tab col s3"><a href="#test1">Test 1</a></li>
-                        <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-                        <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-                        <li class="tab col s3"><a href="#test4">Test 4</a></li>
+                    <ul class="tabs tabs-fixed-width container" id="signInUp">
+                        <li class="tab col s6"><a class="active" href="#signinInterface"><b>{{ 'Sign in' | translate }}</b></a></li>
+                        <li class="tab col s6"><a href="#signupInterface"><b>{{ 'Sign up' | translate }}</b></a></li>
                     </ul>
                 </div>
-                <div id="test1" class="col s12">Test 1</div>
-                <div id="test2" class="col s12">Test 2</div>
-                <div id="test3" class="col s12">Test 3</div>
-                <div id="test4" class="col s12">Test 4</div>
+                <div id="signinInterface" class="col s12">
+                    <div class="section container">
+                        <h5>{{ 'Sign in' | translate }}</h5>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="section">
+                                        <div class="center-align">
+                                            <input id="email_signin" type="email" formControlName="email_signin" placeholder="{{ 'Email' | translate }}" maxlength="150">
+                                            <label for="email_signin">{{ "Email" | translate }} *</label>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center-align" (keyup)="0">
+                                            <input id="password_signin" type="password" formControlName="password_signin" placeholder="{{ 'Password' | translate }}" minlength="8" maxlength="256" #passValue>
+                                            <label for="password_signin">{{ "Password" | translate }} *</label>
+                                        
+                                            <div class="section">
+                                                <label>
+                                                    <input id="show_password_login" type="checkbox" [checked]="showPassValue" (click)="showPasswordLogin($event)">
+                                                    <span>{{ "See the password" | translate }}</span>
+                                                    <p *ngIf="showPassword">{{ passValue.value }}</p>
+                                                </label>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="section">
+                                    <div class="center-align">
+                                        <button class="btn waves-effect waves-light black-text">{{ "Start" | translate }}</button>
+                                    </div>
+                                </div> -->
+
+                                <label>*&nbsp;{{ 'Required field' | translate }}</label>
+                            
+                                <div class="section">
+                                    <div class="center-align">
+                                        <button class="btn waves-effect waves-light black-text" (click)="startUserSession()" [disabled]="!signInForm.valid">{{ "Start" | translate }}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="signupInterface" class="col s12">Test 2</div>
+                <div class="section">
+                    <div class="center-align">
+                        <button class="head-menu-item-btn" [cdkMenuTriggerFor]="languageOverlay">
+                            <img [src]="'assets/img/flag-' + selectedLanguage.flag + '.png'" class="flag" alt="{{ selectedLanguage.Idiom | translate }}">
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col s12 m12 l6 xl6">
-            registrarse
-        </div>
     </div>
-</div>
+    <ng-template #languageOverlay>
+        <div class="overlay-language overlay-fall" cdkMenu>
+            <ul>
+                <li *ngFor="let idiom of idioms" (click)="useLanguage(idiom.prefix)" cdkMenuItem>
+                    <img [src]="'assets/img/flag-' +  idiom.flag + '.png'" width="21" height="20" alt="{{ idiom.Idiom | translate }}">
+                    <span>{{ idiom.Idiom | translate }}</span>
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</ng-container>
