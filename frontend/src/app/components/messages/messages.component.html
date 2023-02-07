@@ -23,7 +23,7 @@
 
                 <div class="section">
                     <div class="right-align">
-                        <button class="btn waves-effect waves-light black-text" (click)="createMessageUser(createMessageForm.value)" [disabled]="!createMessageForm.valid">{{ "Share" | translate }}</button>
+                        <button class="btn waves-effect waves-light black-text borderRadius" (click)="createMessageUser(createMessageForm.value)" [disabled]="!createMessageForm.valid">{{ "Share" | translate }}</button>
                     </div>
                 </div>
             </form>
@@ -34,7 +34,7 @@
             <h5 class="center white-text" *ngIf="messageArray.length <= 0">No tiene mensajes</h5>
             <div *ngIf="messageArray.length > 0">
                 <div class="col s12 m6" *ngFor="let msn of messageArray | keyvalue">
-                    <div class="card white borderRadiusCard">
+                    <div class="card cardStyle">
                         <div class="card-content black-text">
                             <span class="card-title"><b>{{ msn.key }}</b></span>
                             <p>I am a very simple card. I am good at containing small bits of information.
