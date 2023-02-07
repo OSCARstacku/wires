@@ -1,4 +1,7 @@
 <ng-container>
+    <div class="banner">
+        <img class="hide-on-med-and-up scale-down" [src]="'assets/img/banner.jpg'" alt="Wires">
+    </div>
     <div class="container">
         <div class="row center">
             <div class="container section">
@@ -30,7 +33,7 @@
                                         
                                             <div class="section">
                                                 <label>
-                                                    <input id="show_password_login" type="checkbox" [checked]="showPassValue" (click)="showPasswordLogin($event)">
+                                                    <input type="checkbox" [checked]="showPassValue" (click)="showPasswordLogin($event)">
                                                     <span>{{ "See the password" | translate }}</span>
                                                     <p *ngIf="showPassword">{{ passValue.value }}</p>
                                                 </label>
@@ -56,7 +59,58 @@
                         </div>
                     </div>
                 </div>
-                <div id="signupInterface" class="col s12">Test 2</div>
+                <div id="signupInterface" class="col s12">
+                    <div class="section container">
+                        <h5>{{ 'Sign up' | translate }}</h5>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="section">
+                                        <div class="center-align">
+                                            <input id="nickname_signup" type="text" formControlName="nickname_signup" placeholder="{{ 'Nickname' | translate }}" maxlength="50">
+                                            <label for="nickname_signup">{{ "Nickname" | translate }} *</label>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center-align">
+                                            <input id="fullname_signup" type="text" formControlName="fullname_signup" placeholder="{{ 'Names and Surnames' | translate }}" maxlength="150">
+                                            <label for="fullname_signup">{{ "Names and Surnames" | translate }} *</label>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center-align">
+                                            <input id="email_signup" type="email" formControlName="email_signup" placeholder="{{ 'Email' | translate }}" maxlength="150">
+                                            <label for="email_signup">{{ "Email" | translate }} *</label>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center-align" (keyup)="0">
+                                            <input id="password_signup" type="password" formControlName="password_signup" placeholder="{{ 'Password' | translate }}" minlength="8" maxlength="256" #passSignUpValue>
+                                            <label for="password_signup">{{ "Password" | translate }} *</label>
+
+                                            <div class="section">
+                                                <label>
+                                                    <input type="checkbox" [checked]="showPassValue" (click)="showPasswordLogin($event)">
+                                                    <span>{{ "See the password" | translate }}</span>
+                                                    <p *ngIf="showPassword">{{ passSignUpValue.value }}</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <label>*&nbsp;{{ 'Required field' | translate }}</label>
+
+                                <div class="section">
+                                    <div class="center-align">
+                                        <button class="btn waves-effect waves-light black-text" (click)="startUserSession()" [disabled]="!signInForm.valid">{{ "Start" | translate }}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div class="section">
                     <div class="center-align">
                         <button class="head-menu-item-btn" [cdkMenuTriggerFor]="languageOverlay">
