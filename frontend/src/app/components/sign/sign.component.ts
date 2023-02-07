@@ -19,6 +19,7 @@ declare let M:any;
 })
 export class SignComponent implements OnInit, AfterViewInit  {
 
+  authenticatedUser : any = {};
   token : any = '';
 
   countClicks : number = 0;
@@ -30,22 +31,23 @@ export class SignComponent implements OnInit, AfterViewInit  {
   selectedLanguage : any = [];
 
   signInForm = this.fb.group({
-    email_login: ['',Validators.required],
-    password_login: ['',Validators.required],
+    email_signin: ['',Validators.required],
+    password_signin: ['',Validators.required],
   })
 
 
   signUpForm = this.fb.group({
-    nickname_signup: ['', [Validators.required, SignValidator.cannotContainSpace]],
-    fullname_signup: ['', [Validators.required, SignValidator.cannotContainSpace]],
-    email_signup: ['', [Validators.required, SignValidator.cannotContainSpace]],
-    password_signup: ['', [Validators.required, Validators.minLength(8), SignValidator.cannotContainSpace]],
+    nickname_signup: ['', Validators.required],
+    fullname_signup: ['', Validators.required],
+    email_signup: ['', Validators.required],
+    password_signup: ['', Validators.required],
   })
 
   constructor(
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder,
     private translate: TranslateService,
+    private _router: Router,
     private _globalService: GlobalService,
     private _userService: UserService
     // private _adminService: AdminService,
@@ -163,7 +165,19 @@ export class SignComponent implements OnInit, AfterViewInit  {
     this.countClicks += 1;
     if(this.countClicks < 4){
       if(this.signInForm.valid){
-        let dataLogin = this.signInForm.value;
+        const dataUserLogin = this.signInForm.value;
+
+        this._userService.start_user_session(dataUserLogin).subscribe(res=>{
+          if(res.data == undefined){
+            M.toast({ html: res.message });
+          }else{
+            this.countClicks = 0;
+            this.authenticatedUser = res.data,
+            localStorage.setItem('token',res.token);
+            localStorage.setItem('_id,',res.data._id);
+            this._router.navigate(['/']);
+          }
+        })
 
         // this._adminService.start_user_session(dataLogin).subscribe(
         //   res=>{
@@ -231,8 +245,9 @@ export class SignComponent implements OnInit, AfterViewInit  {
       }
       this.cdr.markForCheck();
     })
-    // this.resetForm();
+    this.signUpForm.reset();
     this.setPreloaderOff();
+    this._router.navigate(['sign-in-up']);
   }
 
   // resetForm(){

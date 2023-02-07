@@ -2,6 +2,7 @@
 
 const User=require('../models/user');
 const bcrypt=require('bcrypt-nodejs');
+const jwt=require('../helpers/jwt');
 
 //Create user
 async function create_user(req, res){
@@ -21,7 +22,7 @@ async function create_user(req, res){
                         } catch (error) {
                             // console.error(`Error de servidor: ${error}`);
                         }
-                    }else {
+                    } else {
                         res.status(200).send({ message: 'Error de servidor', data: undefined });
                     }
                 })
@@ -36,6 +37,33 @@ async function create_user(req, res){
     }
 }
 
+async function start_user_session(req, res){
+    try {
+        const data = req.body;
+        let user_arr = [];
+
+        user_arr = await User.find({ email_signup: data.email_signin });
+        if(user_arr.length == 0){
+            res.status(200).send({ message: 'Credenciales incorrectas', data: undefined });
+        } else {
+            let user = user_arr[0];
+            bcrypt.compare(data.password_signin,user.password_signup,async function(error, check){
+                if(check){
+                    res.status(200).send({
+                        data: user,
+                        token: jwt.createToken(user)
+                    })
+                } else {
+                    res.status(200).send({ message: 'Credenciales incorrectas', data: undefined });
+                }
+            })
+        }
+    } catch (error) {
+        res.status(200).send({ message: 'Credenciales incorrectas', data: undefined });
+    }
+}
+
 module.exports={
     create_user,
+    start_user_session
 }
