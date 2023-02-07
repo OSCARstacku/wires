@@ -11,10 +11,11 @@ export class AppComponent implements OnDestroy {
   title = 'frontend';
 
   preloader:boolean = false;
-  hidden:boolean = false
 
   //Suscriptions
   loadAppComponent$:any;
+
+  hidden:boolean = false;
 
   listObserversAppComponent:Array<Subscription>=[];
 

@@ -47,6 +47,8 @@ async function start_user_session(req, res){
             res.status(200).send({ message: 'Credenciales incorrectas', data: undefined });
         } else {
             let user = user_arr[0];
+            console.log(data.password_signin);
+            console.log(user.password_signup);
             bcrypt.compare(data.password_signin,user.password_signup,async function(error, check){
                 if(check){
                     res.status(200).send({

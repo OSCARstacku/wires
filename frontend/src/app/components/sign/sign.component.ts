@@ -60,8 +60,6 @@ export class SignComponent implements OnInit, AfterViewInit  {
     translate.use(this.selectedLanguage.prefix);
   }
 
-  
-
   get f(){
     return this.signUpForm.controls;
   }
@@ -171,10 +169,12 @@ export class SignComponent implements OnInit, AfterViewInit  {
           if(res.data == undefined){
             M.toast({ html: res.message });
           }else{
+            console.log(res)
             this.countClicks = 0;
             this.authenticatedUser = res.data,
             localStorage.setItem('token',res.token);
             localStorage.setItem('_id,',res.data._id);
+            localStorage.setItem('roleUser','!general');
             this._router.navigate(['/']);
           }
         })
@@ -247,7 +247,7 @@ export class SignComponent implements OnInit, AfterViewInit  {
     })
     this.signUpForm.reset();
     this.setPreloaderOff();
-    this._router.navigate(['sign-in-up']);
+    // this._router.navigate(['sign-in-up']);
   }
 
   // resetForm(){

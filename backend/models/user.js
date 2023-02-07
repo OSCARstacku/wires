@@ -8,6 +8,7 @@ let UserSchema=Schema({
     fullname_signup:{type:String,required:true},
     email_signup:{type:String,required:true},
     password_signup:{type:String,required:true},
+    rol:{type:String,default:'appUserAvailable',required:true}
 })
 
 module.exports=mongoose.model('user',UserSchema)
