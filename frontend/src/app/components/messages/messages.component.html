@@ -5,25 +5,25 @@
     </div>
     <div class="section center">
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" [formGroup]="createMessageForm">
                 <div class="row">
                     <div class="section">
                         <div class="center-align">
-                            <input id="email_signin" type="text" formControlName="email_signin" placeholder="{{ 'Talk about me' | translate }}" minlength="5" maxlength="150">
-                            <label for="email_signin">{{ 'Title messages' | translate }}</label>
+                            <input id="title_message_user" type="text" formControlName="title_message_user" placeholder="{{ 'Talk about me' | translate }}" minlength="5" maxlength="150">
+                            <label for="title_message_user">{{ 'Title messages' | translate }}</label>
                         </div>
                     </div>
                     <div class="section">
-                        <div class="center-align" (keyup)="0">
-                            <textarea id="textarea1" class="materialize-textarea" placeholder="{{ 'Create message for share with friends. Max 700 chars' | translate }}" maxlength="700"></textarea>
-                            <label for="textarea1">{{ 'Messages' | translate }}</label>
+                        <div class="center-align">
+                            <textarea id="body_message_user" formControlName="body_message_user" class="materialize-textarea" placeholder="{{ 'Create message for share with friends. Max 700 chars' | translate }}" maxlength="700"></textarea>
+                            <label for="body_message_user">{{ 'Messages' | translate }}</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="section">
                     <div class="right-align">
-                        <button class="btn waves-effect waves-light black-text">{{ "Share" | translate }}</button>
+                        <button class="btn waves-effect waves-light black-text" (click)="createMessageUser(createMessageForm.value)" [disabled]="!createMessageForm.valid">{{ "Share" | translate }}</button>
                     </div>
                 </div>
             </form>

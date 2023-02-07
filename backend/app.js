@@ -32,6 +32,7 @@ mongoose.connect('mongodb://localhost:27017/test',(err,res)=>{
 
 // Rutas
 let user_route=require('./routes/user');
+let message_route=require('./routes/message');
 
 
 // Parsear (analizar cuerpos o estructuras), configurar DATA
@@ -49,6 +50,7 @@ app.use((req,res,next) => {
 
 // Definición de APIs(rutas) a usar
 app.use('/api',user_route);
+app.use('/api',message_route);
 
 
 module.exports=app;
